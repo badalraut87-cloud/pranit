@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday! 🎉</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            position: relative;
+            color: white;
+        }
+
+        /* Floating Balloons Animation */
+        .balloon {
+            position: absolute;
+            font-size: 2rem;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .balloon:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .balloon:nth-child(2) { left: 20%; animation-delay: 1s; }
+        .balloon:nth-child(3) { left: 80%; animation-delay: 2s; }
+        .balloon:nth-child(4) { left: 90%; animation-delay: 3s; }
+        .balloon:nth-child(5) { left: 30%; animation-delay: 4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            50% { transform: translateY(-20px) rotate(180deg); opacity: 0.8; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Animated Birthday Heading */
+        .birthday-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(3rem, 8vw, 8rem);
+            margin: 40px 0;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d, #6bcf7f, #4ecdc4);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite, bounce 2s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(255,255,255,0.5);
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+
+        /* Birthday Message */
+        .birthday-message {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 300;
+            margin: 40px 0;
+            line-height: 1.6;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Surprise Button */
+        .surprise-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255,107,107,0.4);
+            transition: all 0.3s ease;
+            margin: 40px 0;
+            font-family: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .surprise-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255,107,107,0.6);
+        }
+
+        .surprise-btn:active {
+            transform: translateY(-2px);
+        }
+
+        /* Photo Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+            padding: 0 20px;
+        }
+
+        .photo-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeInUpCard 0.8s ease forwards;
+        }
+
+        .photo-card:nth-child(1) { animation-delay: 0.1s; }
+        .photo-card:nth-child(2) { animation-delay: 0.2s; }
+        .photo-card:nth-child(3) { animation-delay: 0.3s; }
+        .photo-card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeInUpCard {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .photo-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 30px 20px 20px;
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-card:hover .photo-overlay {
+            transform: translateY(0);
+        }
+
+        /* Modal Popup */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #ff9a9e, #fecfef, #fecfef);
+            padding: 50px;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 500px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+            animation: modalPop 0.5s ease;
+        }
+
+        @keyframes modalPop {
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .modal h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #ff6b6b;
+        }
+
+        .modal p {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Balloons -->
+    <div class="balloon">🎈</div>
+    <div class="balloon">🎉</div>
+    <div class="balloon">🎈</div>
+    <div class="balloon">🎊</div>
+    <div class="balloon">🎈</div>
+
+    <div class="container">
+        <!-- Birthday Title -->
+        <h1 class="birthday-title">Happy Birthday<br> Pranita</h1>
+
+        <!-- Birthday Message -->
+        <div class="birthday-message">
+            Today is all about celebrating YOU! 🎂✨<br>
+            Your smile lights up our world, and your.......makes every day special.<br>
+            Here's to another year of amazing memories, laughter, and unstoppable adventures together! 🥳
+        </div>
+
+        <!-- Surprise Button -->
+        <button class="surprise-btn" onclick="openModal()">
+            🎁 Click for a Special Birthday Surprise! 🎁
+        </button>
+
+        <!-- Photo Gallery -->
+        <h2 style="font-size: 2.5rem; margin: 40px 0 20px; opacity: 0; animation: fadeInUp 1s ease 0.5s forwards;">Our Memories Together 📸</h2>
+        
+        <div class="gallery">
+            <div class="photo-card">
+                <img src="/image/WhatsApp Image 2026-03-15 at 08.33.10 (1).jpeg" alt="Memory 1">
+                <div class="photo-overlay">
+                    <h3>That Epic Day! 🌟</h3>
+                </div>
+            </div>
+            <div class="photo-card">
+                <img src="/image/WhatsApp Image 2026-03-15 at 08.33.10 (2).jpeg" alt="Memory 2">
+                <div class="photo-overlay">
+                    <h3>Laughing Together 😂</h3>
+                </div>
+            </div>
+            <div class="photo-card">
+                <img src="/image/WhatsApp Image 2026-03-15 at 08.33.10.jpeg" alt="Memory 3">
+                <div class="photo-overlay">
+                    <h3>Adventure Time! 🏞️</h3>
+                </div>
+            </div>
+            <div class="photo-card">
+                <img src="/image/WhatsApp Image 2026-03-15 at 08.33.11.jpeg" alt="Memory 4">
+                <div class="photo-overlay">
+                    <h3>Forever Friends 💕</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Birthday Surprise Modal -->
+    <div id="birthdayModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>🎂 SURPRISE! 🎂</h2>
+            <p>
+                You deserve the BEST birthday ever!<br><br>
+                May this year bring you endless joy, success, and all your heart's desires.<br>
+                Here's to YOU - the most amazing friend anyone could ask for! 🥂✨
+            </p>
+            <button class="surprise-btn" onclick="closeModal()" style="font-size: 1rem; padding: 12px 30px;">
+                Close & Celebrate! 🎉
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('birthdayModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('birthdayModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('birthdayModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Add confetti effect on page load
+        window.addEventListener('load', function() {
+            // Simple confetti burst
+            for(let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.innerHTML = ['🎉','🎊','🎈','✨','⭐','💫'][Math.floor(Math.random()*6)];
+                    confetti.style.position = 'fixed';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = '-10px';
+                    confetti.style.fontSize = '1.5rem';
+                    confetti.style.pointerEvents = 'none';
+                    confetti.style.zIndex = '100';
+                    confetti.style.animation = 'float 3s linear forwards';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 50);
+            }
+        });
+    </script>
+</body>
+</html>
